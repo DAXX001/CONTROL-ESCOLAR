@@ -1,4 +1,4 @@
-/* Layout Principal */
+
 .pagos-layout {
     display: flex;
     gap: 20px;
@@ -8,7 +8,6 @@
 .pagos-sidebar { width: 300px; }
 .pagos-main { flex: 1; }
 
-/* Estilos Sidebar */
 .card-info-dark {
     background: #1a1a1a;
     padding: 15px;
@@ -41,7 +40,6 @@
     margin-top: 5px;
 }
 
-/* Botones Laterales */
 .btn-pago {
     width: 100%;
     padding: 12px;
@@ -57,7 +55,6 @@
 .btn-green { background: #00b894; color: white; }
 .btn-gray { background: #333; color: white; }
 
-/* Grid de Colegiaturas */
 .year-label {
     color: #3b82f6;
     font-size: 14px;
@@ -73,7 +70,6 @@
     margin-bottom: 40px;
 }
 
-/* Tarjetas de Pago */
 .card-pago {
     background: #1a1a1a;
     border: 1px solid #333;
@@ -114,7 +110,6 @@
     padding-top: 10px;
 }
 
-/* Footers de tarjeta */
 .pago-footer, .pago-footer-center {
     margin-top: auto;
     padding-top: 15px;
@@ -142,7 +137,6 @@
 
 .link-recibo:hover { color: #00c3ff; }
 
-/* El cuadro difuminado (Glassmorphism) */
 .glass-container {
     background: rgba(0, 0, 0, 0.6); /* Fondo negro traslúcido */
     backdrop-filter: blur(12px);    /* Este es el truco del difuminado */
@@ -154,7 +148,6 @@
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
 }
 
-/* Layout y Grid */
 .pagos-layout {
     display: grid;
     grid-template-columns: 280px 1fr;
@@ -167,7 +160,6 @@
     gap: 20px;
 }
 
-/* Tarjetas de Pago Individuales */
 .card-pago {
     background: rgba(255, 255, 255, 0.03); /* Ligeramente más clara que el fondo */
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -181,7 +173,6 @@
     transform: translateY(-5px);
 }
 
-/* Detalles de color */
 .label-blue { color: #00c3ff; font-size: 12px; font-weight: bold; }
 .blue-icon { color: #3b82f6; font-size: 20px; }
 .green-icon { color: #00b894; font-size: 20px; }
@@ -216,7 +207,6 @@
     width: 100%;
 }
 
-/* Tablets */
 @media (max-width: 1024px) {
     .pagos-layout {
         grid-template-columns: 1fr; /* sidebar arriba */
@@ -231,10 +221,8 @@
     }
 }
 
-/* Móviles */
 @media (max-width: 768px) {
     
-    /* Layout general */
     .pagos-layout {
         display: flex;
         flex-direction: column;
