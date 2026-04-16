@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEI | Calendario</title>
+        <!-- ===== FAVICON (ICONO DE LA PESTAÑA) ===== -->
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-cei/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-cei/favicon-16x16.png">
+<!-- Para navegadores modernos -->
+<link rel="shortcut icon" href="favicon-cei/favicon.ico" type="image/x-icon">
+<!-- ===== APPLE (iPhone/iPad) ===== -->
+<link rel="apple-touch-icon" sizes="180x180" href="favicon-cei/apple-icon-180x180.png">
+<link rel="apple-touch-icon" sizes="152x152" href="favicon-cei/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="120x120" href="favicon-cei/apple-icon-120x120.png">
+<!-- ===== ANDROID ===== -->
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-cei/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-cei/android-icon-96x96.png">
+<link rel="icon" type="image/png" sizes="72x72" href="favicon-cei/android-icon-72x72.png">
+<!-- ===== MANIFEST (PWA) ===== -->
+<link rel="manifest" href="favicon-cei/manifest.json">
+
+
+<!-- Color de la barra en móviles -->
+<meta name="theme-color" content="#02050a">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="estilos_bolsa.css">
+    <link rel="stylesheet" href="estilos_postulaciones.css">
+    <link rel="stylesheet" href="estilos_tour.css">
+        <link rel="stylesheet" href="estilos_pl.css">
+        <link rel="stylesheet" href="calen.css">
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<!-- BARRA SUPERIOR -->
+<div class="top-bar">
+        <div class="menu-btn" id="menuBtn" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+  <svg class="logo-nav" width="356" height="240" viewBox="0 0 356 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 190.5V88.7L26.8 64.7H100.6L127.4 88.7V122.1H81.2V103.3L75.9 98.5999H51.2L45.9 103.3V176L51.4 180.9H75.8L81.1 176.2V158.2H127.3V190.5L100.5 214.5H26.7L0 190.5ZM28.5 210.8H99.6L123.3 189.6V161.6H85.2V176.8L76.8 184.3H50.4L42 176.8V102.4L50.4 94.9H76.8L85.2 102.4V118.9H123.3V89.5999L99.3 68.2H27.7L4 89.5999V189.1L28.5 210.8ZM9.29999 186.4V92.7L31.3 73H96.2L118.2 92.7V113.9H90.4V99.5L79.8 90.0999H47L36.7 99.3V179.7L47 188.9H79.8L90.4 179.5V166H118.7V186.3L96.7 206H31.3L9.29999 186.4Z" fill="white"></path>
+                        <path d="M150.9 214.5V180.9H161V98.6H150.9V64.8H274V104.6H236.4V98.6H206.9V122.7H213.6V116.9H251.4V162.3H213.6V156.5H206.9V180.9H236.4V174.7H274V214.5H150.9ZM269.9 210.8V178.3H240.2V184.3H202.9V152.7H217.7V158.7H247.4V120.6H217.7V126.6H202.9V95.0001H240.2V101H269.9V68.5001H155V95.0001H164.8V184.4H155V210.9L269.9 210.8ZM160.2 206.1V189H170V90.2H160.2V73.1H264.8V96.2H245.4V90.2H197.7V131.1H222.9V125.1H242.1V154.2H222.9V148.2H197.7V189.1H245.4V183.1H264.8V206.2L160.2 206.1Z" fill="white"></path>
+                        <path d="M289 214.5V180.9H299.1V98.6H289V64.8H355.1V98.6H345V179.9C345 180.5 345.5 180.9 346 180.9H354C354.6 180.9 355 181.4 355 181.9V213.4C355 214 354.5 214.4 354 214.4L289 214.5ZM351.1 209.8V185.6C351.1 185 350.6 184.6 350.1 184.6H341.9C341.3 184.6 340.9 184.1 340.9 183.6V95.0001H351.2V68.5001H293.2V95.0001H303.3V184.6H293.2V210.9H350.2C350.6 210.8 351.1 210.3 351.1 209.8ZM298.4 206.1V189H307.2C307.8 189 308.2 188.5 308.2 188V90.2H298.4V73.1H346.1V90.2H336V188C336 188.6 336.5 189 337 189H345C345.6 189 346 189.5 346 190V205C346 205.6 345.5 206 345 206L298.4 206.1Z" fill="white"></path>
+                        <path d="M7.09961 46.1V39.4H17.1996V43.4L20.7996 47H32.8996L36.4996 43.4V34.4L32.8996 30.8H15.0996L7.09961 22.7V8L15.0996 0H38.5996L46.5996 8V15H36.4996V10.7L32.8996 7H20.7996L17.1996 10.7V19.8L20.7996 23.6H38.5996L46.5996 31.6V46L38.5996 54H15.0996L7.09961 46.1Z" fill="white"></path>
+                        <path d="M56.2998 54.1V47.1H59.8998V7H56.2998V0H73.5998V7H69.9998V47.1H73.5998V54.1H56.2998Z" fill="white"></path>
+                        <path d="M83.1992 46.1V39.4H93.2992V43.4L96.8992 47H108.999L112.599 43.4V34.4L108.999 30.8H91.1992L83.1992 22.7V8L91.1992 0H114.699L122.699 8V15H112.599V10.7L108.999 7H96.9992L93.3992 10.7V19.8L96.9992 23.6H114.799L122.799 31.6V46L114.799 54H91.2992L83.1992 46.1Z" fill="white"></path>
+                        <path d="M132.399 10.6V0H177.099V10.6H170.099V7H159.799V47.1H163.399V54.1H145.999V47.1H149.599V7H139.299V10.6H132.399Z" fill="white"></path>
+                        <path d="M184.3 54.1V47.1H187.9V7H184.3V0H222.3V9.5H215.3V7.10001H197.9V23.7H207V21.3H214V33H207V30.7H197.9V47.2H215.3V44.8H222.3V54.3H184.3V54.1Z" fill="white"></path>
+                        <path d="M229.5 54.1V47.1H233.1V7H229.5V0H243L259.8 27.9L276.4 0H290V7H286.4V47.1H290V54.1H272.7V47.1H276.3V16.6L259.8 44.2L243.1 16.6V47.1H246.7V54.1H229.5V54.1Z" fill="white"></path>
+                        <path d="M297.199 54.1V47.1H299.799L313.199 7H309.299V0H334.899V7H330.599L343.899 47.1H346.599V54.1H329.999V47.1H333.399L330.199 37.6H313.599L310.499 47.1H313.899V54.1H297.199ZM328.499 32.6L321.899 12.7L315.299 32.6H328.499Z" fill="white"></path>
+                        <path d="M161.5 226.5H168C169.4 226.5 170.5 226.8 171.2 227.5C171.9 228.2 172.3 229.1 172.3 230.4C172.3 231.7 171.9 232.7 171.1 233.4C170.3 234.1 169.2 234.5 167.6 234.5H165.5V239.2H161.6V226.5H161.5ZM165.4 231.9H166.4C167.2 231.9 167.7 231.8 168 231.5C168.3 231.2 168.5 230.9 168.5 230.5C168.5 230.1 168.4 229.8 168.1 229.5C167.8 229.2 167.3 229.1 166.6 229.1H165.5V231.9H165.4Z" fill="white"></path>
+                        <path d="M173.8 232.9C173.8 230.8 174.4 229.2 175.5 228.1C176.6 227 178.3 226.4 180.3 226.4C182.4 226.4 184 227 185.2 228.1C186.3 229.2 186.9 230.8 186.9 232.9C186.9 234.4 186.7 235.6 186.2 236.6C185.7 237.6 185 238.3 184 238.8C183 239.3 181.9 239.6 180.5 239.6C179.1 239.6 177.9 239.4 176.9 238.9C175.9 238.4 175.2 237.7 174.6 236.7C174.1 235.6 173.8 234.3 173.8 232.9ZM177.7 232.9C177.7 234.2 177.9 235.1 178.4 235.7C178.9 236.3 179.5 236.5 180.3 236.5C181.1 236.5 181.8 236.2 182.3 235.7C182.8 235.2 183 234.2 183 232.7C183 231.5 182.8 230.6 182.3 230.1C181.8 229.5 181.2 229.3 180.3 229.3C179.5 229.3 178.9 229.6 178.4 230.1C178 230.6 177.7 231.6 177.7 232.9Z" fill="white"></path>
+                        <path d="M187.5 226.5H191.2L192.5 233.6L194.5 226.5H198.2L200.2 233.6L201.5 226.5H205.2L202.4 239.2H198.6L196.4 231.2L194.2 239.2H190.4L187.5 226.5Z" fill="white"></path>
+                        <path d="M206.5 226.5H217V229.2H210.4V231.2H216.5V233.8H210.4V236.3H217.2V239.2H206.5V226.5V226.5Z" fill="white"></path>
+                        <path d="M219.4 239.2V226.5H225.9C227.1 226.5 228 226.6 228.7 226.8C229.3 227 229.9 227.4 230.3 228C230.7 228.6 230.9 229.2 230.9 230.1C230.9 230.8 230.7 231.4 230.4 231.9C230.1 232.4 229.7 232.8 229.2 233.1C228.9 233.3 228.4 233.5 227.8 233.6C228.3 233.8 228.6 233.9 228.8 234.1C228.9 234.2 229.2 234.4 229.4 234.8C229.7 235.1 229.9 235.4 229.9 235.6L231.8 239.3H227.4L225.3 235.4C225 234.9 224.8 234.6 224.6 234.4C224.3 234.2 224 234.1 223.6 234.1H223.3V239.3H219.4V239.2ZM223.3 231.6H225C225.2 231.6 225.5 231.5 226 231.4C226.3 231.3 226.5 231.2 226.6 231C226.8 230.8 226.8 230.5 226.8 230.3C226.8 229.9 226.7 229.6 226.4 229.4C226.1 229.2 225.7 229.1 224.9 229.1H223.2V231.6H223.3Z" fill="white"></path>
+                        <path d="M233.1 226.5H243.6V229.2H237V231.2H243.1V233.8H237V236.3H243.8V239.2H233.1V226.5V226.5Z" fill="white"></path>
+                        <path d="M246 226.5H251.8C252.9 226.5 253.9 226.7 254.6 227C255.3 227.3 255.9 227.8 256.4 228.3C256.9 228.9 257.2 229.6 257.4 230.3C257.6 231.1 257.7 231.9 257.7 232.8C257.7 234.2 257.5 235.2 257.2 236C256.9 236.7 256.5 237.4 255.9 237.9C255.4 238.4 254.8 238.7 254.1 238.9C253.2 239.1 252.5 239.2 251.8 239.2H246V226.5ZM249.9 229.4V236.3H250.9C251.7 236.3 252.3 236.2 252.7 236C253.1 235.8 253.3 235.5 253.5 235C253.7 234.5 253.8 233.8 253.8 232.8C253.8 231.5 253.6 230.5 253.1 230C252.7 229.5 251.9 229.3 250.9 229.3H249.9V229.4Z" fill="white"></path>
+                        <path d="M265.7 226.5H273C274.2 226.5 275.2 226.8 275.8 227.4C276.5 228 276.8 228.8 276.8 229.7C276.8 230.5 276.6 231.1 276.1 231.6C275.8 232 275.3 232.2 274.7 232.4C275.6 232.6 276.3 233 276.7 233.5C277.1 234 277.3 234.7 277.3 235.5C277.3 236.2 277.1 236.8 276.8 237.3C276.5 237.8 276.1 238.2 275.5 238.5C275.2 238.7 274.7 238.8 274 238.9C273.1 239 272.5 239.1 272.2 239.1H265.4V226.5H265.7ZM269.6 231.5H271.3C271.9 231.5 272.3 231.4 272.6 231.2C272.8 231 273 230.7 273 230.3C273 229.9 272.9 229.6 272.6 229.4C272.4 229.2 271.9 229.1 271.3 229.1H269.6V231.5ZM269.6 236.5H271.6C272.3 236.5 272.8 236.4 273 236.1C273.3 235.9 273.4 235.5 273.4 235.1C273.4 234.7 273.3 234.4 273 234.2C272.7 234 272.2 233.9 271.6 233.9H269.6V236.5Z" fill="white"></path>
+                        <path d="M278.2 226.5H282.6L285.2 230.8L287.8 226.5H292.1L287.2 233.9V239.2H283.3V233.9L278.2 226.5Z" fill="white"></path>
+                        <path d="M299.4 226.5H303.3V239.2H299.4V226.5Z" fill="white"></path>
+                        <path d="M305.4 235L308.3 234.8C308.8 234.8 309.2 235.1 309.4 235.5C309.5 235.7 309.6 235.9 309.7 236.1C310.1 236.6 310.7 236.9 311.4 236.9C312 236.9 312.4 236.8 312.7 236.5C313 236.2 313.2 235.9 313.2 235.6C313.2 235.3 313.1 235 312.8 234.7C312.5 234.4 311.8 234.2 310.8 234C309.1 233.6 307.9 233.1 307.1 232.5C306.4 231.9 306 231 306 230C306 229.3 306.2 228.7 306.6 228.1C307 227.5 307.5 227.1 308.3 226.7C309.1 226.4 310.1 226.2 311.4 226.2C313 226.2 314.3 226.5 315.1 227.1C315.6 227.5 316 228 316.3 228.6C316.6 229.2 316.1 230 315.4 230L313.7 230.1C313.3 230.1 312.9 229.8 312.7 229.4C312.6 229.2 312.5 229 312.3 228.9C312 228.6 311.6 228.5 311 228.5C310.5 228.5 310.2 228.6 310 228.8C309.8 229 309.7 229.2 309.7 229.5C309.7 229.7 309.8 229.9 310 230C310.2 230.2 310.6 230.3 311.3 230.5C313 230.9 314.2 231.2 315 231.6C315.7 232 316.3 232.4 316.6 233C316.9 233.6 317.1 234.2 317.1 234.9C317.1 235.7 316.9 236.5 316.4 237.2C315.9 237.9 315.3 238.4 314.5 238.8C313.7 239.2 312.7 239.3 311.4 239.3C309.2 239.3 307.7 238.9 306.9 238.1C306.1 237.3 305.5 236.3 305.4 235Z" fill="white"></path>
+                        <path d="M320.1 226.5H322C322.6 226.5 323 227 323 227.5V238.1C323 238.7 322.5 239.1 322 239.1H320.1C319.5 239.1 319.1 238.6 319.1 238.1V227.5C319.1 227 319.5 226.5 320.1 226.5Z" fill="white"></path>
+                        <path d="M326.8 226.5H330.1C330.6 226.5 331 226.8 331.1 227.3L331.9 230.4C332.2 231.4 333.6 231.4 333.9 230.4L334.7 227.3C334.8 226.8 335.2 226.5 335.7 226.5H339C339.6 226.5 340 227 340 227.5V238.1C340 238.7 339.5 239.1 339 239.1H337.9C337.3 239.1 336.9 238.6 336.9 238.1V237.6C336.9 236.4 335.2 236.2 334.9 237.3L334.7 238.3C334.6 238.8 334.2 239.1 333.7 239.1H332.4C331.9 239.1 331.5 238.8 331.4 238.3L331.2 237.4C330.9 236.2 329.2 236.4 329.2 237.7V238.1C329.2 238.7 328.7 239.1 328.2 239.1H327.1C326.5 239.1 326.1 238.6 326.1 238.1V227.5C325.8 227 326.2 226.5 326.8 226.5Z" fill="white"></path>
+                        <path d="M349.6 237.1H346.7C346.2 237.1 345.8 237.4 345.7 237.8L345.5 238.4C345.4 238.8 345 239.1 344.5 239.1H342.8C342.1 239.1 341.6 238.4 341.8 237.7L345.8 227.1C346 226.7 346.3 226.4 346.8 226.4H349.7C350.1 226.4 350.5 226.7 350.7 227.1L354.7 237.7C355 238.4 354.5 239.1 353.7 239.1H351.8C351.3 239.1 350.9 238.8 350.8 238.4L350.6 237.8C350.5 237.4 350.1 237.1 349.6 237.1ZM349.2 233C348.9 232 347.5 232 347.2 233C347 233.7 347.5 234.3 348.2 234.3C348.9 234.4 349.4 233.7 349.2 233Z" fill="white"></path>
+                    </svg>
+                    
+        <div id="user-display" style="color: #add8e6; font-weight: bold; text-transform: uppercase;">
+             <i class="fas fa-user-circle"></i>
+             
+        </div>
+    </div>
+<!-- MENÚ LATERAL -->
+<div class="sidebar" id="sidebar">
+    <a href="perfil.html"><i class="fas fa-user"></i> Perfil</a>
+    <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+    <a href="horario.html"><i class="fas fa-calendar"></i> Horario</a>
+    <a href="calificaciones.html"><i class="fas fa-file-alt"></i> Calificaciones</a>
+    <a href="calendario.html"><i class="fas fa-calendar-alt"></i> Calendario</a>
+    <a href="pagos.html"><i class="fas fa-credit-card"></i> Pagos</a>
+    <a href="credencial.html"><i class="fas fa-id-card"></i> Credencial</a>
+
+    <a href="#" onclick="cerrarSesion()" style="color: #ff8b73; margin-top: 50px;">
+        <i class="fas fa-power-off"></i> Cerrar Sesión
+    </a>
+</div>
+
+<div class="main-wrap" id="mainContent">
+<div class="main-content-post">
+    
+<div class="calendar-page-container">
+    <!-- Header del Visor (Igual a tu imagen) -->
+    <div class="pdf-viewer-bar">
+        <div class="pdf-left">
+            <button class="btn-icon"><i class="fas fa-bars"></i></button>
+            <span class="pdf-file-name">CALENDARIOS_LICENC_SABATINO_2025-2026.pdf</span>
+        </div>
+        
+        <div class="pdf-center">
+            <span class="page-count">1 / 1</span>
+            <div class="zoom-controls">
+                <button class="zoom-btn"><i class="fas fa-minus"></i></button>
+                <span class="zoom-percent">100%</span>
+                <button class="zoom-btn"><i class="fas fa-plus"></i></button>
+            </div>
+        </div>
+
+        <div class="pdf-right">
+            <button class="btn-icon"><i class="fas fa-print"></i></button>
+            <button class="btn-icon"><i class="fas fa-download"></i></button>
+            <button class="btn-icon"><i class="fas fa-ellipsis-v"></i></button>
+        </div>
+    </div>
+
+    <!-- Contenedor del PDF -->
+    <div class="pdf-main-content">
+        <!-- Sidebar de miniaturas (Opcional, estilo visor) -->
+        <div class="pdf-thumbnails">
+            <div class="thumb active">
+                <img src="tu-imagen-calendario.jpg" alt="Página 1">
+                <span>1</span>
+            </div>
+        </div>
+
+        <!-- El PDF Real -->
+        <div class="pdf-frame-container">
+            <embed 
+                src="CALENDARIOS_LICENCIATURAS_2025-2026.pdf" 
+                type="application/pdf" 
+                width="100%" 
+                height="100%" 
+            />
+        </div>
+    </div>
+</div>
+
+</div>
+<script src="particles.js"></script>
+<script src="mecanismoTour.js"></script>
+<script src="usuario.js"></script>
+
+
+</body>
+</html>

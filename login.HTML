@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEI - Login y Registro</title>
+    <!-- ===== FAVICON (ICONO DE LA PESTAÑA) ===== -->
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-cei/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-cei/favicon-16x16.png">
+
+<!-- Para navegadores modernos -->
+<link rel="shortcut icon" href="favicon-cei/favicon.ico" type="image/x-icon">
+
+<!-- ===== APPLE (iPhone/iPad) ===== -->
+<link rel="apple-touch-icon" sizes="180x180" href="favicon-cei/apple-icon-180x180.png">
+<link rel="apple-touch-icon" sizes="152x152" href="favicon-cei/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="120x120" href="favicon-cei/apple-icon-120x120.png">
+
+<!-- ===== ANDROID ===== -->
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-cei/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-cei/android-icon-96x96.png">
+<link rel="icon" type="image/png" sizes="72x72" href="favicon-cei/android-icon-72x72.png">
+
+<!-- ===== MANIFEST (PWA) ===== -->
+<link rel="manifest" href="favicon-cei/manifest.json">
+
+<!-- Color de la barra en móviles -->
+<meta name="theme-color" content="#02050a">
+    <link rel="stylesheet" href="styles.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* Estilo para ocultar secciones */
+        .hidden { display: none; }
+        .toggle-link { cursor: pointer; color: #add8e6; text-decoration: underline; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<!-- LOGO ISEU ARRIBA -->
+<div class="logo-iseu-top">
+    <img src="iseu-blanco.png" alt="ISEU">
+    <div class="logo-text">
+        <strong>ISEU</strong>
+        <div class="logo-sub">SISTEMAS Y POSGRADOS</div>
+    </div>
+</div>
+
+<!-- CANVAS VA FUERA -->
+<canvas id="canvas"></canvas>
+
+<div class="main-wrapper">
+    <div class="info-section">
+        <div class="brand-container">
+            <!-- TU SVG SE QUEDA IGUAL -->
+            <!-- Quitamos la imagen anterior y pegamos el código del logo nuevo -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="372" height="256" viewBox="0 0 372 256" fill="none">
+                        <g filter="url(#filter0_d_29_450)">
+                            <path d="M15 191.5V89.7L41.8 65.7H115.6L142.4 89.7V123.1H96.2V104.3L90.9 99.5999H66.2L60.9 104.3V177L66.4 181.9H90.8L96.1 177.2V159.2H142.3V191.5L115.5 215.5H41.7L15 191.5ZM43.5 211.8H114.6L138.3 190.6V162.6H100.2V177.8L91.8 185.3H65.4L57 177.8V103.4L65.4 95.9H91.8L100.2 103.4V119.9H138.3V90.5999L114.3 69.2H42.7L19 90.5999V190.1L43.5 211.8ZM24.3 187.4V93.7L46.3 74H111.2L133.2 93.7V114.9H105.4V100.5L94.8 91.0999H62L51.7 100.3V180.7L62 189.9H94.8L105.4 180.5V167H133.7V187.3L111.7 207H46.3L24.3 187.4Z" fill="#FFFFFF"></path>
+                            <path d="M165.9 215.5V181.9H176V99.5999H165.9V65.7999H289V105.6H251.4V99.5999H221.9V123.7H228.6V117.9H266.4V163.3H228.6V157.5H221.9V181.9H251.4V175.7H289V215.5H165.9ZM284.9 211.8V179.3H255.2V185.3H217.9V153.7H232.7V159.7H262.4V121.6H232.7V127.6H217.9V95.9999H255.2V102H284.9V69.4999H170V95.9999H179.8V185.4H170V211.9L284.9 211.8ZM175.2 207.1V190H185V91.1999H175.2V74.0999H279.8V97.1999H260.4V91.1999H212.7V132.1H237.9V126.1H257.1V155.2H237.9V149.2H212.7V190.1H260.4V184.1H279.8V207.2L175.2 207.1Z" fill="#FFFFFF"></path>
+                            <path d="M304 215.5V181.9H314.1V99.5999H304V65.7999H370.1V99.5999H360V180.9C360 181.5 360.5 181.9 361 181.9H369C369.6 181.9 370 182.4 370 182.9V214.4C370 215 369.5 215.4 369 215.4L304 215.5ZM366.1 210.8V186.6C366.1 186 365.6 185.6 365.1 185.6H356.9C356.3 185.6 355.9 185.1 355.9 184.6V95.9999H366.2V69.4999H308.2V95.9999H318.3V185.6H308.2V211.9H365.2C365.6 211.8 366.1 211.3 366.1 210.8ZM313.4 207.1V190H322.2C322.8 190 323.2 189.5 323.2 189V91.1999H313.4V74.0999H361.1V91.1999H351V189C351 189.6 351.5 190 352 190H360C360.6 190 361 190.5 361 191V206C361 206.6 360.5 207 360 207L313.4 207.1Z" fill="#FFFFFF"></path>
+                            <path d="M22.0996 47.1V40.4H32.1996V44.4L35.7996 48H47.8996L51.4996 44.4V35.4L47.8996 31.8H30.0996L22.0996 23.7V9L30.0996 1H53.5996L61.5996 9V16H51.4996V11.7L47.8996 8H35.7996L32.1996 11.7V20.8L35.7996 24.6H53.5996L61.5996 32.6V47L53.5996 55H30.0996L22.0996 47.1Z" fill="#FFFFFF"></path>
+                            <path d="M71.2998 55.1V48.1H74.8998V8H71.2998V1H88.5998V8H84.9998V48.1H88.5998V55.1H71.2998Z" fill="#FFFFFF"></path>
+                            <path d="M98.1992 47.1V40.4H108.299V44.4L111.899 48H123.999L127.599 44.4V35.4L123.999 31.8H106.199L98.1992 23.7V9L106.199 1H129.699L137.699 9V16H127.599V11.7L123.999 8H111.999L108.399 11.7V20.8L111.999 24.6H129.799L137.799 32.6V47L129.799 55H106.299L98.1992 47.1Z" fill="#FFFFFF"></path>
+                            <path d="M147.399 11.6V1H192.099V11.6H185.099V8H174.799V48.1H178.399V55.1H160.999V48.1H164.599V8H154.299V11.6H147.399Z" fill="#FFFFFF"></path>
+                            <path d="M199.3 55.1V48.1H202.9V8H199.3V1H237.3V10.5H230.3V8.10001H212.9V24.7H222V22.3H229V34H222V31.7H212.9V48.2H230.3V45.8H237.3V55.3H199.3V55.1Z" fill="#FFFFFF"></path>
+                            <path d="M244.5 55.1V48.1H248.1V8H244.5V1H258L274.8 28.9L291.4 1H305V8H301.4V48.1H305V55.1H287.7V48.1H291.3V17.6L274.8 45.2L258.1 17.6V48.1H261.7V55.1H244.5Z" fill="#FFFFFF"></path>
+                            <path d="M312.199 55.1V48.1H314.799L328.199 8H324.299V1H349.899V8H345.599L358.899 48.1H361.599V55.1H344.999V48.1H348.399L345.199 38.6H328.599L325.499 48.1H328.899V55.1H312.199ZM343.499 33.6L336.899 13.7L330.299 33.6H343.499Z" fill="#FFFFFF"></path>
+                            <path d="M176.5 227.5H183C184.4 227.5 185.5 227.8 186.2 228.5C186.9 229.2 187.3 230.1 187.3 231.4C187.3 232.7 186.9 233.7 186.1 234.4C185.3 235.1 184.2 235.5 182.6 235.5H180.5V240.2H176.6V227.5H176.5ZM180.4 232.9H181.4C182.2 232.9 182.7 232.8 183 232.5C183.3 232.2 183.5 231.9 183.5 231.5C183.5 231.1 183.4 230.8 183.1 230.5C182.8 230.2 182.3 230.1 181.6 230.1H180.5V232.9H180.4Z" fill="#FFFFFF"></path>
+                            <path d="M188.8 233.9C188.8 231.8 189.4 230.2 190.5 229.1C191.6 228 193.3 227.4 195.3 227.4C197.4 227.4 199 228 200.2 229.1C201.3 230.2 201.9 231.8 201.9 233.9C201.9 235.4 201.7 236.6 201.2 237.6C200.7 238.6 200 239.3 199 239.8C198 240.3 196.9 240.6 195.5 240.6C194.1 240.6 192.9 240.4 191.9 239.9C190.9 239.4 190.2 238.7 189.6 237.7C189.1 236.6 188.8 235.3 188.8 233.9ZM192.7 233.9C192.7 235.2 192.9 236.1 193.4 236.7C193.9 237.3 194.5 237.5 195.3 237.5C196.1 237.5 196.8 237.2 197.3 236.7C197.8 236.2 198 235.2 198 233.7C198 232.5 197.8 231.6 197.3 231.1C196.8 230.5 196.2 230.3 195.3 230.3C194.5 230.3 193.9 230.6 193.4 231.1C193 231.6 192.7 232.6 192.7 233.9Z" fill="#FFFFFF"></path>
+                            <path d="M202.5 227.5H206.2L207.5 234.6L209.5 227.5H213.2L215.2 234.6L216.5 227.5H220.2L217.4 240.2H213.6L211.4 232.2L209.2 240.2H205.4L202.5 227.5Z" fill="#FFFFFF"></path>
+                            <path d="M221.5 227.5H232V230.2H225.4V232.2H231.5V234.8H225.4V237.3H232.2V240.2H221.5V227.5Z" fill="#FFFFFF"></path>
+                            <path d="M234.4 240.2V227.5H240.9C242.1 227.5 243 227.6 243.7 227.8C244.3 228 244.9 228.4 245.3 229C245.7 229.6 245.9 230.2 245.9 231.1C245.9 231.8 245.7 232.4 245.4 232.9C245.1 233.4 244.7 233.8 244.2 234.1C243.9 234.3 243.4 234.5 242.8 234.6C243.3 234.8 243.6 234.9 243.8 235.1C243.9 235.2 244.2 235.4 244.4 235.8C244.7 236.1 244.9 236.4 244.9 236.6L246.8 240.3H242.4L240.3 236.4C240 235.9 239.8 235.6 239.6 235.4C239.3 235.2 239 235.1 238.6 235.1H238.3V240.3H234.4V240.2ZM238.3 232.6H240C240.2 232.6 240.5 232.5 241 232.4C241.3 232.3 241.5 232.2 241.6 232C241.8 231.8 241.8 231.5 241.8 231.3C241.8 230.9 241.7 230.6 241.4 230.4C241.1 230.2 240.7 230.1 239.9 230.1H238.2V232.6H238.3Z" fill="#FFFFFF"></path>
+                            <path d="M248.1 227.5H258.6V230.2H252V232.2H258.1V234.8H252V237.3H258.8V240.2H248.1V227.5Z" fill="#FFFFFF"></path>
+                            <path d="M261 227.5H266.8C267.9 227.5 268.9 227.7 269.6 228C270.3 228.3 270.9 228.8 271.4 229.3C271.9 229.9 272.2 230.6 272.4 231.3C272.6 232.1 272.7 232.9 272.7 233.8C272.7 235.2 272.5 236.2 272.2 237C271.9 237.7 271.5 238.4 270.9 238.9C270.4 239.4 269.8 239.7 269.1 239.9C268.2 240.1 267.5 240.2 266.8 240.2H261V227.5ZM264.9 230.4V237.3H265.9C266.7 237.3 267.3 237.2 267.7 237C268.1 236.8 268.3 236.5 268.5 236C268.7 235.5 268.8 234.8 268.8 233.8C268.8 232.5 268.6 231.5 268.1 231C267.7 230.5 266.9 230.3 265.9 230.3H264.9V230.4Z" fill="#FFFFFF"></path>
+                            <path d="M280.7 227.5H288C289.2 227.5 290.2 227.8 290.8 228.4C291.5 229 291.8 229.8 291.8 230.7C291.8 231.5 291.6 232.1 291.1 232.6C290.8 233 290.3 233.2 289.7 233.4C290.6 233.6 291.3 234 291.7 234.5C292.1 235 292.3 235.7 292.3 236.5C292.3 237.2 292.1 237.8 291.8 238.3C291.5 238.8 291.1 239.2 290.5 239.5C290.2 239.7 289.7 239.8 289 239.9C288.1 240 287.5 240.1 287.2 240.1H280.4V227.5H280.7ZM284.6 232.5H286.3C286.9 232.5 287.3 232.4 287.6 232.2C287.8 232 288 231.7 288 231.3C288 230.9 287.9 230.6 287.6 230.4C287.4 230.2 286.9 230.1 286.3 230.1H284.6V232.5ZM284.6 237.5H286.6C287.3 237.5 287.8 237.4 288 237.1C288.3 236.9 288.4 236.5 288.4 236.1C288.4 235.7 288.3 235.4 288 235.2C287.7 235 287.2 234.9 286.6 234.9H284.6V237.5Z" fill="#FFFFFF"></path>
+                            <path d="M293.2 227.5H297.6L300.2 231.8L302.8 227.5H307.1L302.2 234.9V240.2H298.3V234.9L293.2 227.5Z" fill="#FFFFFF"></path>
+                            <path d="M314.4 227.5H318.3V240.2H314.4V227.5Z" fill="#FFFFFF"></path>
+                            <path d="M320.4 236L323.3 235.8C323.8 235.8 324.2 236.1 324.4 236.5C324.5 236.7 324.6 236.9 324.7 237.1C325.1 237.6 325.7 237.9 326.4 237.9C327 237.9 327.4 237.8 327.7 237.5C328 237.2 328.2 236.9 328.2 236.6C328.2 236.3 328.1 236 327.8 235.7C327.5 235.4 326.8 235.2 325.8 235C324.1 234.6 322.9 234.1 322.1 233.5C321.4 232.9 321 232 321 231C321 230.3 321.2 229.7 321.6 229.1C322 228.5 322.5 228.1 323.3 227.7C324.1 227.4 325.1 227.2 326.4 227.2C328 227.2 329.3 227.5 330.1 228.1C330.6 228.5 331 229 331.3 229.6C331.6 230.2 331.1 231 330.4 231L328.7 231.1C328.3 231.1 327.9 230.8 327.7 230.4C327.6 230.2 327.5 230 327.3 229.9C327 229.6 326.6 229.5 326 229.5C325.5 229.5 325.2 229.6 325 229.8C324.8 230 324.7 230.2 324.7 230.5C324.7 230.7 324.8 230.9 325 231C325.2 231.2 325.6 231.3 326.3 231.5C328 231.9 329.2 232.2 330 232.6C330.7 233 331.3 233.4 331.6 234C331.9 234.6 332.1 235.2 332.1 235.9C332.1 236.7 331.9 237.5 331.4 238.2C330.9 238.9 330.3 239.4 329.5 239.8C328.7 240.2 327.7 240.3 326.4 240.3C324.2 240.3 322.7 239.9 321.9 239.1C321.1 238.3 320.5 237.3 320.4 236Z" fill="#FFFFFF"></path>
+                            <path d="M335.1 227.5H337C337.6 227.5 338 228 338 228.5V239.1C338 239.7 337.5 240.1 337 240.1H335.1C334.5 240.1 334.1 239.6 334.1 239.1V228.5C334.1 228 334.5 227.5 335.1 227.5Z" fill="#FFFFFF"></path>
+                            <path d="M341.8 227.5H345.1C345.6 227.5 346 227.8 346.1 228.3L346.9 231.4C347.2 232.4 348.6 232.4 348.9 231.4L349.7 228.3C349.8 227.8 350.2 227.5 350.7 227.5H354C354.6 227.5 355 228 355 228.5V239.1C355 239.7 354.5 240.1 354 240.1H352.9C352.3 240.1 351.9 239.6 351.9 239.1V238.6C351.9 237.4 350.2 237.2 349.9 238.3L349.7 239.3C349.6 239.8 349.2 240.1 348.7 240.1H347.4C346.9 240.1 346.5 239.8 346.4 239.3L346.2 238.4C345.9 237.2 344.2 237.4 344.2 238.7V239.1C344.2 239.7 343.7 240.1 343.2 240.1H342.1C341.5 240.1 341.1 239.6 341.1 239.1V228.5C340.8 228 341.2 227.5 341.8 227.5Z" fill="#FFFFFF"></path>
+                            <path d="M364.6 238.1H361.7C361.2 238.1 360.8 238.4 360.7 238.8L360.5 239.4C360.4 239.8 360 240.1 359.5 240.1H357.8C357.1 240.1 356.6 239.4 356.8 238.7L360.8 228.1C361 227.7 361.3 227.4 361.8 227.4H364.7C365.1 227.4 365.5 227.7 365.7 228.1L369.7 238.7C370 239.4 369.5 240.1 368.7 240.1H366.8C366.3 240.1 365.9 239.8 365.8 239.4L365.6 238.8C365.5 238.4 365.1 238.1 364.6 238.1ZM364.2 234C363.9 233 362.5 233 362.2 234C362 234.7 362.5 235.3 363.2 235.3C363.9 235.4 364.4 234.7 364.2 234Z" fill="#FFFFFF"></path>
+                        </g>
+                        <defs>
+                            <filter id="filter0_d_29_450" x="0" y="0" width="371.1" height="255.6" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"></feColorMatrix>
+                                <feOffset dx="-7" dy="7"></feOffset>
+                                <feGaussianBlur stdDeviation="4"></feGaussianBlur>
+                                <feComposite in2="hardAlpha" operator="out"></feComposite>
+                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"></feColorMatrix>
+                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_29_450"></feBlend>
+                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_29_450" result="shape"></feBlend>
+                            </filter>
+                        </defs>
+                    </svg>
+        </div>
+    </div>
+
+
+
+        <div class="login-section">
+            <!-- TARJETA DE LOGIN -->
+            <div class="glass-card" id="loginCard">
+                <h2 class="form-title">INICIAR SESIÓN</h2>
+                <form id="loginForm">
+<div class="form-group input-icon">
+    <label>Usuario</label>
+    <i class="fa fa-user"></i>
+    <input type="text" id="loginUsername" placeholder="Tu nombre de usuario" required>
+</div>
+
+<div class="form-group input-icon password-group">
+    <label>Contraseña</label>
+    <i class="fa fa-lock"></i>
+    <input type="password" id="loginPassword" placeholder="Tu contraseña" required>
+    <i class="fa fa-eye toggle-password" onclick="togglePassword('loginPassword', this)"></i>
+</div>
+                    <button type="submit" class="btn-login">ENTRAR</button>
+                </form>
+                <div class="footer-links">
+                    <p style="color: rgba(255,255,255,0.4); font-size: 12px;">¿No tienes cuenta?</p>
+                    <span class="toggle-link" onclick="showRegister()">Crear cuenta nueva</span>
+                    <br>
+
+    <a href="https://wa.me/527221387606" target="_blank" class="toggle-link">
+        ¿Olvidaste tu contraseña?
+    </a>
+                </div>
+            </div>
+
+            <!-- TARJETA DE REGISTRO (Oculta por defecto) -->
+            <div class="glass-card hidden" id="registerCard">
+                <h2 class="form-title">REGISTRARSE</h2>
+                <form id="registerForm">
+                    <div class="form-group input-icon">
+    <label>Nombre Completo</label>
+    <i class="fa fa-user"></i>
+    <input type="text" id="regName" placeholder="Ej: Juan Pérez" required>
+</div>
+
+<div class="form-group input-icon">
+    <label>Usuario</label>
+    <i class="fa fa-user"></i>
+    <input type="text" id="regUsername" placeholder="Crea un usuario" required>
+</div>
+
+<div class="form-group input-icon password-group">
+    <label>Contraseña</label>
+    <i class="fa fa-lock"></i>
+    <input type="password" id="regPassword" placeholder="Crea una contraseña" required>
+    <i class="fa fa-eye toggle-password" onclick="togglePassword('regPassword', this)"></i>
+</div>
+                    <button type="submit" class="btn-login" style="background: #add8e6; color: #000;">REGISTRARME</button>
+                </form>
+                <div class="footer-links">
+    <span class="toggle-link" onclick="showLogin()">
+        Ya tengo cuenta, iniciar sesión
+    </span>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="particles.js"></script>
+    
+    <script>
+function animateCard(cardId) {
+    const card = document.getElementById(cardId);
+    card.style.opacity = "0";
+    card.style.transform = "translateY(80px)";
+
+    setTimeout(() => {
+        card.style.transition = "all 0.6s ease";
+        card.style.opacity = "1";
+        card.style.transform = "translateY(0)";
+    }, 50);
+}
+
+function showRegister() {
+    document.getElementById('loginCard').classList.add('hidden');
+    const reg = document.getElementById('registerCard');
+    reg.classList.remove('hidden');
+    animateCard('registerCard');
+}
+
+function showLogin() {
+    document.getElementById('registerCard').classList.add('hidden');
+    const log = document.getElementById('loginCard');
+    log.classList.remove('hidden');
+    animateCard('loginCard');
+}
+        // --- LÓGICA DE INTERFAZ ---
+        function showRegister() {
+            document.getElementById('loginCard').classList.add('hidden');
+            document.getElementById('registerCard').classList.remove('hidden');
+        }
+
+        function showLogin() {
+            document.getElementById('registerCard').classList.add('hidden');
+            document.getElementById('loginCard').classList.remove('hidden');
+        }
+
+        // --- LÓGICA DE REGISTRO (Guardar en LocalStorage) ---
+        const registerForm = document.getElementById('registerForm');
+
+        registerForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('regName').value;
+            const user = document.getElementById('regUsername').value;
+            const pass = document.getElementById('regPassword').value;
+
+            // Obtener usuarios ya existentes o crear lista vacía
+            let usuarios = JSON.parse(localStorage.getItem('usuarios_cecyteam')) || [];
+
+            // Verificar si el usuario ya existe
+            const existe = usuarios.find(u => u.username === user);
+            if (existe) {
+                alert("Ese nombre de usuario ya está ocupado.");
+                return;
+            }
+
+            // Guardar nuevo usuario
+            usuarios.push({ nombreReal: name, username: user, password: pass });
+            localStorage.setItem('usuarios_cecyteam', JSON.stringify(usuarios));
+
+            alert("¡Cuenta creada con éxito! Ahora puedes iniciar sesión.");
+            showLogin();
+        });
+
+        // --- LÓGICA DE LOGIN (Buscar en LocalStorage) ---
+        const loginForm = document.getElementById('loginForm');
+
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const userVal = document.getElementById('loginUsername').value;
+            const passVal = document.getElementById('loginPassword').value;
+
+            // Obtener lista de usuarios de la memoria
+            let usuarios = JSON.parse(localStorage.getItem('usuarios_cecyteam')) || [];
+
+            // Agregar a JUAN por defecto si la lista está vacía (Opcional)
+            if (userVal === "JUAN" && passVal === "1234") {
+                sessionStorage.setItem('usuarioNombre', "JUAN");
+                window.location.href = 'index.html';
+                return;
+            }
+
+            // Buscar coincidencia
+            const usuarioEncontrado = usuarios.find(u => u.username === userVal && u.password === passVal);
+
+            if (usuarioEncontrado) {
+                // Guardamos el nombre real para el saludo "HOLA, JUAN"
+                sessionStorage.setItem('usuarioNombre', usuarioEncontrado.nombreReal); 
+                window.location.href = 'index.html'; 
+            } else {
+                alert("Usuario o contraseña incorrectos");
+            }
+        });
+        function togglePassword(inputId, icon) {
+    const input = document.getElementById(inputId);
+
+    if (input.type === "password") {
+        input.type = "text";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+    } else {
+        input.type = "password";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
+    }
+}
+
+    </script>
+<div class="footer-iseu">
+    <div class="footer-left">
+        © Todos los Derechos Reservados
+    </div>
+    <div class="footer-right">
+        <a href="index1.html">ISEU SISTEMAS Y POSGRADOS</a>
+    </div>
+</div>
+</body>
+</html>

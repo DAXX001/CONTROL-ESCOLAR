@@ -1,0 +1,864 @@
+<?php
+// Inicia la sesión
+session_start();
+
+// Incluye la configuración de la base de datos
+include('db_config.php');
+
+// Verifica si el usuario ha iniciado sesión correctamente
+if(isset($_SESSION['username'])) {
+    // Si ha iniciado sesión, muestra el mensaje de bienvenida
+    $nombre_usuario = $_SESSION['username'];
+
+    // Datos inventados para el usuario (ejemplo)
+    $email = "usuario@example.com";
+    $telefono = "+52 1234567890";
+    $ubicacion = "Ciudad de México";
+    $habilidades = "Desarrollo web, Diseño gráfico";
+    $experiencia = "3 años de experiencia en desarrollo de software";
+    $educacion = "Licenciatura en Informática";
+
+} else {
+    // Si no ha iniciado sesión, redirige al usuario a la página de inicio de sesión
+    header("Location: login.php");
+    exit();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolsa de Trabajo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="estilos.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+            background: #fff;
+            color: #000;
+        }
+
+        .top-bar {
+            background-color: #34495e;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            height: 56px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 2;
+            transition: 0.5s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            opacity: 1;
+            visibility: visible;
+            padding: 0 20px;
+        }
+
+        .menu-btn {
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+            z-index: 3;
+            transition: 0.5s;
+            background: none;
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu-btn span {
+            display: block;
+            height: 4px;
+            width: 30px;
+            margin: 6px 0;
+            background-color: white;
+            transition: 0.5s;
+            border-radius: 2px;
+        }
+
+        .menu-btn.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-btn.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: -250px;
+            background-color: #34495e;
+            padding-top: 70px;
+            text-align: left;
+            transition: 0.5s;
+        }
+
+        .sidebar a {
+            padding: 16px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            opacity: 0.7;
+        }
+
+        .sidebar a i {
+            margin-right: 10px;
+            font-size: 20px;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #2c3a4a;
+            opacity: 1;
+        }
+
+        .content {
+            margin-top: 50px;
+            margin-left: 0;
+            padding: 16px;
+            transition: margin-left 0.5s;
+            position: relative;
+            z-index: 0;
+            width: 100%;
+            display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+        .recuadro {
+    background-color: #ecf0f1;
+    padding: 10px; /* Ajusta el espacio interno del recuadro según tus necesidades */
+    margin: 10px; /* Ajusta el margen entre los recuadros según tus necesidades */
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    cursor: pointer;
+    width: 100%; /* Ocupa el ancho completo del contenedor */
+    transition: 0.3s;
+    color: #333;
+    opacity: 0.7;
+}
+
+.recuadro img {
+    max-width: 100%;
+    max-height: 80px; /* Ajusta la altura máxima de las imágenes según tus necesidades */
+    margin-bottom: 10px;
+}
+
+.recuadro:hover {
+    background-color: #d0d5d9;
+    opacity: 1;
+}
+
+.sidebar-active .recuadro {
+    margin-left: 250px;
+}
+
+        .welcome-message {
+            font-size: 18px;
+            margin-left: 20px;
+            margin-bottom: 20px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .more-options {
+            position: absolute;
+            top: 50px;
+            left: 250px;
+            width: 200px;
+            background-color: #34495e;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+
+        .more-options a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .more-options a:hover {
+            background-color: #2c3a4a;
+        }
+
+        .menu-btn:hover + .more-options,
+        .more-options:hover {
+            opacity: 1;
+            visibility: visible;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 74px;
+            height: auto;
+            margin-right: 24px;
+        }
+        .hero-section {
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.hero-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.hero-overlay {
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+    background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+    text-align: center;
+    padding: 60px;
+    box-sizing: border-box;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.5s ease, box-shadow 0.5s ease, padding 0.5s ease;
+}
+
+.hero-text {
+    max-width: 80%;
+    margin-bottom: 40px;
+    text-align: justify;
+    line-height: 1.8;
+    transition: color 0.5s ease;
+}
+
+.hero-text h1 {
+    font-size: 36px;
+    color: #3498db;
+    margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards 0.5s ease, colorChange 1s forwards 1s ease;
+}
+
+.hero-text p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.hero-text .cecitem-description {
+    font-size: 28px;
+    font-weight: bold;
+    color: #3498db;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.hero-text .bolsa-description {
+    font-size: 20px;
+    font-style: italic;
+    color: #e74c3c;
+    margin-bottom: 30px;
+}
+
+.hero-overlay:hover {
+    background-color: rgba(255, 255, 255, 0.99);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Animación para fadeInUp */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estilos para las letras que describen al CECyTEM y la Bolsa de Trabajo */
+.cecitem-description {
+    font-size: 24px;
+    font-weight: bold;
+    color: #3498db;
+    margin-bottom: 10px;
+}
+
+.bolsa-description {
+    font-size: 18px;
+    font-style: italic;
+    color: #e74c3c;
+    margin-bottom: 20px;
+}
+.bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 98.5%;
+    background-color: #34495e;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 3;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.bottom-bar.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.social-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #2c3a4a;
+}
+
+.logo-container img {
+    width: 80px;
+    height: auto;
+}
+
+.direction {
+    color: white;
+    font-size: 14px;
+}
+.bottom-bar .access-icons a {
+    font-size: 21px;
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+}
+
+.bottom-bar .access-icons a:hover {
+    color: #2c3a4a;
+}
+.hero-text {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.search-bar {
+    margin-bottom: 20px;
+}
+
+.search-input {
+    padding: 10px;
+    width: 70%;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-button {
+    padding: 10px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.job-listing {
+    width: calc(33.33% - 20px);
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    background-color: #ecf0f1;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    cursor: pointer;
+}
+
+.job-listing {
+    width: calc(33.33% - 20px);
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    background-color: #ecf0f1;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.job-listing img {
+    width: 100%;
+    height: 150px; /* Ajusta la altura según sea necesario */
+    object-fit: cover;
+}
+
+.job-listing h3,
+.job-listing p {
+    padding: 0 10px;
+    margin: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.job-listing h3 {
+    font-size: 16px;
+}
+
+.job-listing p {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.job-listing .read-more {
+    font-size: 14px;
+    color: #3498db;
+    cursor: pointer;
+    text-decoration: underline;
+    display: block;
+    margin-top: 10px;
+}
+
+.job-listing:hover {
+    background-color: #d0d5d9;
+}
+
+
+.read-more {
+    color: #3498db;
+    cursor: pointer;
+    text-decoration: underline;
+    display: block;
+    margin-top: 10px;
+}
+.user-welcome {
+    color: white;
+    margin-left: auto;
+    margin-right: 20px; /* Ajusta el margen derecho según sea necesario */
+    display: flex;
+    align-items: center;
+}
+
+.user-welcome span {
+    margin-left: 10px; /* Espacio entre la imagen de perfil y el mensaje de bienvenida */
+}
+
+.profile-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #3498db;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.profile-circle img {
+    width: 100%;
+    border-radius: 50%;
+}
+/* Estilos para el modal y el carrusel */
+.modal-background {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.job-details {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: auto;
+}
+
+.job-details img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.job-details h2,
+.job-details p {
+    margin: 10px 0;
+}
+
+.job-details button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.job-details button:hover {
+    background-color: #2980b9;
+}
+
+.carousel {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel img {
+    min-width: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-buttons {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+
+.carousel-buttons button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.carousel-buttons button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+    </style>
+</head>
+<body>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $servername = "localhost";
+    $username = "usuario";
+    $password = "contraseña";
+    $dbname = "login_system";
+
+    $input_usuario = $_POST["usuario"];
+    $input_contraseña = $_POST["contraseña"];
+
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    if ($conn->connect_error) {
+        error_log("Error de conexión a la base de datos: " . $conn->connect_error);
+        echo "Lo sentimos, ha ocurrido un error en el servidor. Por favor, inténtelo de nuevo más tarde.";
+        exit;
+    }
+
+    $sql = "SELECT * FROM usuarios WHERE usuario = '$input_usuario' AND contraseña = '$input_contraseña'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $nombre_usuario = $row["nombre"];
+            $imagen_perfil = $row["imagen_perfil"];
+        }
+    } else {
+        echo "0 resultados";
+    }
+
+    $conn->close();
+}
+
+if(isset($_SESSION['username'])) {
+    echo "<p>Bienvenido, " . $_SESSION['username'] . "</p>";
+}
+?>
+<div class="top-bar">
+    <button class="menu-btn" onclick="toggleSidebar()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <div class="user-welcome">
+        <?php if(isset($nombre_usuario)): ?>
+            <span>Bienvenido, <?php echo $nombre_usuario; ?></span>
+        <?php endif; ?>
+    </div>
+    <div class="logo-container">
+        <img src="logotipo.png" alt="Logo" class="logo">
+    </div>
+</div>
+<div class="sidebar">
+    <a href="index.php" onclick="toggleSidebar()">
+        <i class="fas fa-home"></i> Inicio
+    </a>
+    <a href="perfil.php">
+        <i class="fas fa-user-circle"></i> Tu perfil
+    </a>
+    <a href="cerca_de_ti.php" onclick="toggleSidebar()">
+        <i class="fas fa-map-marker-alt"></i> Cerca de ti
+    </a>
+    <a href="conocenos.php" onclick="toggleSidebar()">
+        <i class="fas fa-info-circle"></i> Conócenos
+    </a>
+    <a href="cv_enviados.php" onclick="toggleSidebar()">
+        <i class="fas fa-paper-plane"></i> CV Enviados
+    </a>
+    <a class="logout-btn" href="logout.php">
+    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+</a>
+</div>
+<div class="hero-section">
+    <img src="fondo feed empleos-final final combinada.png" alt="Hero Image" class="hero-image">
+    <div class="hero-overlay">
+        <div class="hero-text">
+            <h2>Trabajos Laborales Importantes en el Estado de México</h2>
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Buscar trabajos..." oninput="searchJobs()">
+                <button class="search-button">Buscar</button>
+            </div>
+            <div class="content" id="jobContainer">
+                <!-- Trabajos se renderizan aquí -->
+            </div>
+        </div>
+    </div>
+    <!-- Aquí colocamos el contenedor de detalles del trabajo envuelto en el fondo oscuro -->
+    <div class="modal-background" id="modalBackground">
+        <div class="job-details" id="jobDetails">
+            <div class="carousel">
+                <img src="image1.jpg" alt="Imagen 1">
+                <img src="image2.jpg" alt="Imagen 2">
+                <img src="image3.jpg" alt="Imagen 3">
+            </div>
+            <div class="carousel-buttons">
+                <button id="prevBtn">&#10094;</button>
+                <button id="nextBtn">&#10095;</button>
+            </div>
+            <h2>Título del Trabajo</h2>
+            <p>Descripción detallada del trabajo...</p>
+            <button id="enviarCVBtn">Enviar CV</button>
+            <button id="closeModal">Cerrar</button>
+            
+        </div>
+    </div>
+</div>
+
+<div class="bottom-bar" id="bottomBar">
+    <div class="access-icons">
+        <a href="#" onclick="toggleSidebar()"><i class="fas fa-home"></i></a>
+        <a href="perfil.html"><i class="fas fa-user-circle"></i></a>
+        <a href="#" onclick="toggleSidebar()"><i class="fas fa-file-alt"></i></a>
+        <a href="#" onclick="toggleSidebar()"><i class="fas fa-map-marker-alt"></i></a>
+        <a href="#" onclick="toggleSidebar()"><i class="fas fa-info-circle"></i></a>
+        <a class="logout-btn" href="#"><i class="fas fa-sign-out-alt"></i></a>
+    </div>
+    <div class="logo-container">
+        <img src="logotipo.png" alt="Logo" class="logo">
+    </div>
+    <div class="social-icons">
+        <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+    </div>
+    <div class="direction">
+        <p>Tu dirección aquí</p>
+    </div>
+</div>
+
+    <!-- JavaScript para el menú desplegable y otras funcionalidades -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+    // Función para mostrar/ocultar la barra lateral
+    function toggleSidebar() {
+        var sidebar = document.querySelector('.sidebar');
+        var content = document.querySelector('.content');
+        var topBar = document.querySelector('.top-bar');
+        var menuBtn = document.querySelector('.menu-btn');
+
+        menuBtn.classList.toggle('active');
+        if (menuBtn.classList.contains('active')) {
+            sidebar.style.left = '0';
+            content.style.marginLeft = '250px';
+            topBar.style.transform = 'translateX(250px)';
+        } else {
+            sidebar.style.left = '-250px';
+            content.style.marginLeft = '0';
+            topBar.style.transform = 'translateX(0)';
+        }
+    }
+
+    // Variables para mostrar/ocultar la barra inferior al hacer scroll
+    var bottomBar = document.getElementById("bottomBar");
+    var isBottomBarVisible = false;
+
+    window.addEventListener("scroll", function() {
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+            showBottomBar();
+        } else {
+            hideBottomBar();
+        }
+    });
+
+    function showBottomBar() {
+        if (!isBottomBarVisible) {
+            bottomBar.classList.add('show');
+            isBottomBarVisible = true;
+        }
+    }
+
+    function hideBottomBar() {
+        if (isBottomBarVisible) {
+            bottomBar.classList.remove('show');
+            isBottomBarVisible = false;
+        }
+    }
+
+    // Lista de trabajos
+    const jobs = [
+        { id: 1, title: "Desarrollador Web", description: "Oportunidad emocionante para un desarrollador web con experiencia en tecnologías front-end y back-end.", location: "Toluca, Estado de México", image: "descarga.jpg", company: "Tech Solutions", email: "jobs@techsolutions.com" },
+        { id: 2, title: "Analista de Datos", description: "Buscamos un analista de datos altamente motivado para trabajar en proyectos de análisis y visualización de datos.", location: "Naucalpan, Estado de México", image: "descarga (1).jpg", company: "Data Insights", email: "jobs@datainsights.com" },
+        { id: 3, title: "Diseñador Gráfico", description: "Oportunidad para un diseñador gráfico creativo con habilidades excepcionales en Adobe Creative Suite.", location: "Metepec, Estado de México", image: "descarga (2).jpg", company: "Creative Designs", email: "jobs@creativedesigns.com" },
+        { id: 4, title: "Gerente de Proyectos", description: "Buscamos un gerente de proyectos con experiencia para liderar iniciativas clave.", location: "Ecatepec, Estado de México", image: "descarga (3).jpg", company: "Project Leaders", email: "jobs@projectleaders.com" }
+    ];
+
+    // Función para renderizar los trabajos en la lista
+    function renderJobs(jobs) {
+        var jobContainer = document.getElementById('jobContainer');
+        jobContainer.innerHTML = '';
+        jobs.forEach(job => {
+            var jobCard = document.createElement('div');
+            jobCard.classList.add('job-card');
+            jobCard.innerHTML = `
+                <img src="${job.image}" alt="${job.title}" class="job-image">
+                <div class="job-info">
+                    <h3>${job.title}</h3>
+                    <p>${job.description}</p>
+                    <p><strong>Ubicación:</strong> ${job.location}</p>
+                    <button onclick="showDetails(${job.id})">Ver detalles</button>
+                </div>
+            `;
+            jobContainer.appendChild(jobCard);
+        });
+    }
+
+    // Función para mostrar los detalles de un trabajo específico
+    function showDetails(jobId) {
+        const job = jobs.find(job => job.id === jobId);
+        const modalBackground = document.getElementById('modalBackground');
+        const jobDetails = document.getElementById('jobDetails');
+
+        if (job) {
+            jobDetails.innerHTML = `
+                <div class="carousel">
+                    <img src="${job.image}" alt="${job.title}">
+                    <img src="image2.jpg" alt="Imagen 2">
+                    <img src="image3.jpg" alt="Imagen 3">
+                </div>
+                <div class="carousel-buttons">
+                    <button id="prevBtn">&#10094;</button>
+                    <button id="nextBtn">&#10095;</button>
+                </div>
+                <h2>${job.title}</h2>
+                <p>${job.description}</p>
+                <p>Ubicación: ${job.location}</p>
+                <p>Empresa: ${job.company}</p>
+                <p>Email: <a href="mailto:${job.email}">${job.email}</a></p>
+                <button id="applyBtn">Enviar CV</button>
+                <button id="closeModal">Cerrar</button>
+            `;
+
+            modalBackground.style.display = 'flex';
+
+            document.getElementById('closeModal').addEventListener('click', () => {
+                modalBackground.style.display = 'none';
+            });
+
+            document.getElementById('applyBtn').addEventListener('click', () => {
+                enviarCV(job.id); // Llama a la función enviarCV con el ID del trabajo
+            });
+
+            const carouselImages = document.querySelectorAll('.carousel img');
+            let currentImageIndex = 0;
+
+            document.getElementById('nextBtn').addEventListener('click', () => {
+                carouselImages[currentImageIndex].style.transform = `translateX(-100%)`;
+                currentImageIndex = (currentImageIndex + 1) % carouselImages.length;
+                carouselImages[currentImageIndex].style.transform = `translateX(0)`;
+            });
+
+            document.getElementById('prevBtn').addEventListener('click', () => {
+                carouselImages[currentImageIndex].style.transform = `translateX(100%)`;
+                currentImageIndex = (currentImageIndex - 1 + carouselImages.length) % carouselImages.length;
+                carouselImages[currentImageIndex].style.transform = `translateX(0)`;
+            });
+        }
+    }
+
+    // Función para enviar el CV mediante AJAX
+    function enviarCV(jobId) {
+        // Realizar una solicitud AJAX al archivo PHP para enviar el CV
+        $.ajax({
+            type: 'POST',
+            url: 'enviar_cv.php', // Nombre del archivo PHP que manejará el envío del CV
+            data: { jobId: jobId }, // Pasar el ID del trabajo como datos adicionales
+            success: function(response) {
+                alert('CV enviado correctamente.'); // Mostrar un mensaje de éxito
+                // Opcional: Puedes cerrar el modal aquí si lo deseas
+                document.getElementById('modalBackground').style.display = 'none';
+            },
+            error: function() {
+                alert('Error al enviar CV. Inténtalo de nuevo más tarde.'); // Mostrar un mensaje de error si falla
+            }
+        });
+    }
+
+    // Ejecutar la función para renderizar los trabajos al cargar la página
+    document.addEventListener('DOMContentLoaded', function() {
+        renderJobs(jobs);
+    });
+</script>
+</body>
+</html>

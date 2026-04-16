@@ -1,0 +1,149 @@
+.welcome-container {
+    padding: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.glass-hero {
+    background: rgba(13, 20, 26, 0.8);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(0, 195, 255, 0.2);
+    border-radius: 25px;
+    padding: 40px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+.badge-beta {
+    background: rgba(0, 195, 255, 0.1);
+    color: #00c3ff;
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    border: 1px solid rgba(0, 195, 255, 0.3);
+}
+
+h1 {
+    color: #fff;
+    font-size: 42px;
+    margin: 20px 0 10px;
+}
+
+.subtitle {
+    color: #00c3ff;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.info-msg {
+    color: #ccc;
+    line-height: 1.6;
+    font-size: 15px;
+    border-left: 3px solid #00c3ff;
+    padding-left: 20px;
+    margin-bottom: 40px;
+}
+
+/* Sección Android */
+.android-focus-card {
+    background: rgba(164, 198, 57, 0.1); /* Color Android traslúcido */
+    border: 1px solid rgba(164, 198, 57, 0.3);
+    border-radius: 15px;
+    padding: 25px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.android-icon i {
+    font-size: 40px;
+    color: #a4c639;
+}
+
+.android-text h3 {
+    color: #fff;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+.android-text p {
+    color: #bbb;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* Footer con el nombre del Ing. */
+.hero-footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.prof-tag {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #00c3ff;
+    font-size: 13px;
+    font-weight: 500;
+}
+/* Sección de descarga */
+.download-area {
+    margin-top: 30px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.btn-download-app {
+    background: linear-gradient(135deg, #a4c639 0%, #7db344 100%);
+    color: #fff;
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 10px 20px rgba(164, 198, 57, 0.3);
+    transition: all 0.3s ease;
+    width: fit-content;
+}
+
+.btn-download-app:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(164, 198, 57, 0.5);
+    filter: brightness(1.1);
+}
+
+.btn-download-app i {
+    font-size: 28px;
+}
+
+.btn-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.btn-text span {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.btn-text small {
+    font-size: 11px;
+    opacity: 0.8;
+}
+
+.pwa-hint {
+    color: #888;
+    font-size: 12px;
+}
+
+.pwa-hint i {
+    color: #00c3ff;
+    margin-left: 5px;
+}

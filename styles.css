@@ -1,0 +1,581 @@
+/* --- CSS MODIFICADO PARA MAYOR ESPACIADO --- */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body, html {
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+    overflow: hidden;
+    background: #02050a;
+}
+
+#canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+}
+
+.main-wrapper {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+    background: rgba(0, 5, 15, 0.4);
+}
+
+.info-section {
+    flex: 1.2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-logo {
+    width: 380px;
+    filter: drop-shadow(0 0 30px rgba(173, 216, 230, 0.3));
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.brand-name {
+    color: white;
+    font-size: 75px;
+    font-weight: 900;
+    letter-spacing: 6px;
+    text-align: center;
+    text-shadow: 0 0 20px rgba(173, 216, 230, 0.5);
+}
+
+.login-section {
+    flex: 0.8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.glass-card {
+    width: 420px; /* Un poco más ancha para dar aire lateral */
+    background: rgba(255, 255, 255, 0.03); 
+    backdrop-filter: blur(15px) saturate(150%);
+    border: 1px solid rgba(173, 216, 230, 0.1);
+    padding: 70px 50px; /* Más espacio interno arriba y a los lados */
+    border-radius: 35px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    text-align: center;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.glass-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(173, 216, 230, 0.5);
+    box-shadow: 0 0 40px rgba(173, 216, 230, 0.2);
+    transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) translateY(-5px);
+}
+
+.form-title {
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 5px;
+    margin-bottom: 50px; /* Más separación del título */
+    opacity: 0.6;
+}
+
+/* --- ESPACIADO DE GRUPOS --- */
+.form-group {
+    margin-bottom: 35px; /* Más espacio entre Email y Contraseña */
+    text-align: left;
+}
+
+label { 
+    color: #add8e6; 
+    font-size: 11px; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+    margin-bottom: 12px; /* Más espacio entre el texto y el cuadro */
+    display: block; 
+    letter-spacing: 1px;
+}
+
+input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    padding: 18px 22px; /* Cuadros más altos y cómodos para escribir */
+    color: #fff;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #add8e6;
+    box-shadow: 0 0 20px rgba(173, 216, 230, 0.3);
+    outline: none;
+}
+
+.btn-login {
+    width: 100%;
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 20px; /* Botón más grande y fácil de clickear */
+    border-radius: 14px;
+    font-weight: 900;
+    cursor: pointer;
+    margin-top: 15px; /* Separación del último input */
+    transition: 0.4s;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.btn-login:hover {
+    background: #add8e6;
+    box-shadow: 0 0 35px rgba(173, 216, 230, 0.6);
+    transform: translateY(-3px);
+}
+
+.footer-links {
+    margin-top: 40px; /* Separación del botón hacia abajo */
+}
+
+.footer-links a { 
+    color: #add8e6; 
+    text-decoration: none; 
+    font-weight: bold; 
+    font-size: 13px; 
+    transition: 0.3s; 
+}
+
+.footer-links a:hover { 
+    text-shadow: 0 0 10px #add8e6; 
+    color: #fff; 
+}
+/* ===== ANIMACIONES GENERALES ===== */
+@keyframes slideLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-150px) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes slideRight {
+    0% {
+        opacity: 0;
+        transform: translateX(150px) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes floatUp {
+    0% {
+        opacity: 0;
+        transform: translateY(80px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== ANIMACIÓN POR PARTES DEL LOGO ===== */
+svg path {
+    opacity: 0;
+    transform: translateX(-100px);
+    animation: slideLeft 0.8s ease forwards;
+}
+
+/* Alternar lados para efecto dinámico */
+svg path:nth-child(even) {
+    transform: translateX(100px);
+    animation: slideRight 0.8s ease forwards;
+}
+
+/* Delay progresivo (efecto cascada) */
+svg path:nth-child(1) { animation-delay: 0.1s; }
+svg path:nth-child(2) { animation-delay: 0.2s; }
+svg path:nth-child(3) { animation-delay: 0.3s; }
+svg path:nth-child(4) { animation-delay: 0.4s; }
+svg path:nth-child(5) { animation-delay: 0.5s; }
+svg path:nth-child(6) { animation-delay: 0.6s; }
+svg path:nth-child(7) { animation-delay: 0.7s; }
+svg path:nth-child(8) { animation-delay: 0.8s; }
+svg path:nth-child(9) { animation-delay: 0.9s; }
+svg path:nth-child(10) { animation-delay: 1s; }
+
+/* ===== TARJETAS ===== */
+.glass-card {
+    animation: floatUp 1s ease forwards;
+    opacity: 0;
+}
+
+/* Delay para que aparezca después del logo */
+#loginCard {
+    animation-delay: 1.2s;
+}
+
+#registerCard {
+    animation-delay: 1.2s;
+}
+
+/* ===== LOGO SUPERIOR ISEU (AJUSTADO) ===== */
+.logo-iseu-top {
+    position: fixed;
+    top: 25px;
+    left: 120px; /* 🔥 aquí lo recorremos a la derecha */
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #ffffff;
+    z-index: 999;
+}
+
+/* Imagen circular */
+.logo-iseu-top img {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Texto */
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+/* ISEU */
+.logo-text strong {
+    font-size: 20px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+/* Subtexto con línea amarilla */
+.logo-sub {
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.9;
+}
+
+/* Línea amarilla tipo TEC */
+.logo-sub::before {
+    content: "";
+    width: 35px;
+    height: 3px;
+    background: #FFD700;
+}
+/* ===== ANIMACIÓN LOGO ISEU (MISMO ESTILO PRO) ===== */
+.logo-iseu-top {
+    opacity: 0;
+    transform: translateX(-120px);
+    animation: iseuEnter 1s ease forwards;
+    animation-delay: 0.3s;
+}
+
+/* Imagen entra por la izquierda */
+.logo-iseu-top img {
+    opacity: 0;
+    transform: translateX(-80px) scale(0.8);
+    animation: iseuImgEnter 0.8s ease forwards;
+    animation-delay: 0.4s;
+}
+
+/* Texto entra por la derecha */
+.logo-text {
+    opacity: 0;
+    transform: translateX(80px);
+    animation: iseuTextEnter 0.8s ease forwards;
+    animation-delay: 0.6s;
+}
+
+/* Línea amarilla con efecto */
+.logo-sub::before {
+    content: "";
+    width: 0;
+    height: 3px;
+    background: #FFD700;
+    animation: lineGrow 0.6s ease forwards;
+    animation-delay: 0.9s;
+}
+
+/* ===== KEYFRAMES ===== */
+@keyframes iseuEnter {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes iseuImgEnter {
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes iseuTextEnter {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes lineGrow {
+    from {
+        width: 0;
+    }
+    to {
+        width: 35px;
+    }
+}
+
+/* ===== FOOTER ISEU ===== */
+.footer-iseu {
+    position: fixed;
+    bottom: 20px;
+    left: 120px;   /* igual que el logo */
+    right: 120px;  /* 🔥 mismo margen que izquierda */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgba(255,255,255,0.7);
+    font-size: 12px;
+    letter-spacing: 1px;
+    z-index: 999;
+
+    /* Animación */
+    opacity: 0;
+    transform: translateY(30px);
+    animation: footerEnter 1s ease forwards;
+    animation-delay: 1.5s;
+}
+
+/* IZQUIERDA */
+.footer-left {
+    text-align: left;
+}
+
+/* DERECHA */
+.footer-right a {
+    text-align: right;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+/* HOVER 🔥 */
+.footer-right a:hover {
+    color: #FFD700;
+    text-shadow: 0 0 10px #FFD700;
+}
+
+/* Animación */
+@keyframes footerEnter {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== INPUT CON ICONO BIEN ALINEADO ===== */
+.input-icon {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ICONO IZQUIERDO (NO AFECTA AL OJITO) */
+.input-icon i:not(.toggle-password) {
+    position: absolute;
+    left: 15px;
+    top: 60%;
+    transform: translateY(-10%);
+    color: rgba(255,255,255,0.6);
+    font-size: 14px;
+    pointer-events: none;
+}
+
+/* INPUT */
+.input-icon input {
+    padding: 14px 15px 14px 40px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    width: 100%;
+}
+
+/* EFECTO FOCUS */
+.input-icon input:focus {
+    border-color: #00c3ff;
+    box-shadow: 0 0 10px rgba(0,195,255,0.5);
+}
+
+.input-icon input:focus ~ i:not(.toggle-password) {
+    color: #00c3ff;
+}
+
+
+/* ===== OJITO PASSWORD ===== */
+.password-group {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 68%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: rgba(255,255,255,0.6);
+    z-index: 10;
+}
+
+.password-group input {
+    padding-right: 45px;
+}
+
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+
+    .glass-card {
+        width: 90%;
+        margin: auto;
+    }
+
+    .input-icon i:not(.toggle-password) {
+        left: 12px;
+        font-size: 13px;
+    }
+
+    .input-icon input {
+        padding-left: 38px;
+    }
+
+    /* Footer adaptable */
+    .footer-iseu {
+        left: 20px;
+        right: 20px;
+        font-size: 10px;
+        flex-direction: column;
+        gap: 5px;
+        text-align: center;
+    }
+
+    .footer-right {
+        text-align: center;
+    }
+}
+
+/* ===== FIX GENERAL ===== */
+body, html {
+    overflow-x: hidden; /* permite scroll vertical */
+    overflow-y: auto;
+}
+
+/* quitar altura rígida */
+.main-wrapper {
+    min-height: 100vh;
+    height: auto;
+}
+
+/* ===== RESPONSIVE REAL ===== */
+@media (max-width: 900px) {
+
+    /* 🔥 layout en columna */
+    .main-wrapper {
+        flex-direction: column;
+        padding-top: 80px;
+    }
+
+    /* ocultar o reducir logo grande */
+    .info-section {
+        flex: none;
+        padding: 20px;
+    }
+
+    svg {
+        width: 80%;
+        height: auto;
+    }
+
+    /* login ocupa todo */
+    .login-section {
+        flex: none;
+        width: 100%;
+        padding: 20px;
+    }
+
+    /* tarjeta adaptable */
+    .glass-card {
+        width: 95%;
+        max-width: 400px;
+        padding: 40px 25px;
+        border-radius: 25px;
+    }
+
+    /* LOGO ARRIBA CENTRADO */
+    .logo-iseu-top {
+        left: 50%;
+        transform: translateX(-50%);
+        top: 10px;
+    }
+
+    /* FOOTER RESPONSIVO */
+    .footer-iseu {
+        left: 20px;
+        right: 20px;
+        bottom: 10px;
+        flex-direction: column;
+        gap: 5px;
+        text-align: center;
+    }
+
+}
+
+/* ===== EXTRA CHICO (CELULARES) ===== */
+@media (max-width: 480px) {
+
+    .glass-card {
+        padding: 30px 20px;
+    }
+
+    .form-group {
+        margin-bottom: 25px;
+    }
+
+    input {
+        padding: 14px 15px;
+        font-size: 14px;
+    }
+
+    .btn-login {
+        padding: 16px;
+        font-size: 13px;
+    }
+
+    .brand-name {
+        font-size: 40px;
+    }
+
+}

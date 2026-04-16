@@ -1,0 +1,411 @@
+/* =========================
+   BOTONES / GENERAL
+========================= */
+
+.modo-btn{
+    background:transparent;
+    border:none;
+    color:#00c3ff;
+    font-size:20px;
+    cursor:pointer;
+    margin-right:15px;
+}
+
+.mensaje-sistema{
+    display:none;
+    background:#00ffaa20;
+    border:1px solid #00ffaa;
+    padding:12px;
+    margin:20px auto;
+    width:60%;
+    text-align:center;
+    border-radius:10px;
+    color:#00ffaa;
+    font-weight:bold;
+}
+
+.mini-btn{
+    padding:6px 14px;
+    margin:4px;
+    border:none;
+    border-radius:6px;
+    background:#00ffaa;
+    color:#000;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* =========================
+   MODO CLARO
+========================= */
+
+.modo-claro{
+    background:#f5f7fa;
+    color:#222;
+}
+
+.modo-claro .recuadro{
+    background:#ffffff;
+    color:#222;
+    border:1px solid #ddd;
+}
+
+.modo-claro .page-title{
+    color:#111;
+}
+
+.modo-claro .top-bar{
+    background:#ffffff;
+}
+
+/* =========================
+   HORARIO CONTENEDOR
+========================= */
+
+.horario-container {
+    width: 90%;
+    margin: 120px auto;
+}
+
+/* TITULO SECCIÓN */
+.titulo-horario {
+    text-align: center;
+    color: #00c3ff;
+    font-size: 28px;
+    letter-spacing: 3px;
+    margin-bottom: 40px;
+    text-shadow: 0 0 15px rgba(0,195,255,0.6);
+}
+
+/* TARJETA DIA (CONTENEDOR) */
+.dia-card {
+    position: relative;
+    margin-bottom: 40px;
+    padding: 25px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0,195,255,0.1);
+    box-shadow: 0 0 25px rgba(0,0,0,0.7);
+}
+
+.dia-card h2 { /* Cambiado de h3 a h2 para coincidir con tu HTML */
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+/* =========================
+   GRID TRACK (CONTENEDOR DE TARJETAS)
+========================= */
+
+.track {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 10px;
+}
+
+/* =========================
+   CARD HORARIO (ESTILO IMAGEN)
+========================= */
+
+.card-horario {
+    padding: 20px;
+    border-radius: 16px;
+    background: linear-gradient(145deg, #0b0f14, #111827);
+    color: white;
+    border: 1px solid rgba(0,195,255,0.08);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s;
+    
+    /* Alineación de texto para imitar imagen */
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+/* HOVER */
+.card-horario:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 25px rgba(0,195,255,0.25);
+    border: 1px solid rgba(0,195,255,0.4);
+}
+
+/* ETIQUETAS AZULES (Materia, Docente, etc.) */
+.card-horario .label {
+    color: #00c3ff;
+    font-size: 11px;
+    font-weight: 700;
+    margin-top: 12px;
+    display: block;
+    letter-spacing: 0.5px;
+}
+
+/* DATOS BLANCOS (Mayúsculas) */
+.card-horario .dato {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: uppercase; /* Clave para el estilo de la imagen */
+    line-height: 1.3;
+    display: block;
+}
+
+/* GRID INFERIOR (Aula, Clave, Cuatri) */
+.card-footer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+/* BARRA DE COLOR INFERIOR */
+.barra {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 5px;
+    width: 50%;
+    background: linear-gradient(90deg, #22c55e, #4ade80);
+    border-radius: 0 10px 0 10px;
+}
+
+.barra.azul { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+.barra.roja { background: linear-gradient(90deg, #ef4444, #f87171); }
+
+/* =========================
+   CALIFICACIONES Y OTROS
+========================= */
+
+.card-calif {
+    min-width: 260px;
+    padding: 18px;
+    border-radius: 16px;
+    background: #0b1118;
+    border: 1px solid rgba(255,255,255,0.05);
+    color: white;
+    transition: 0.3s;
+}
+
+.card-calif:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 20px rgba(0,195,255,0.3);
+}
+
+.calif {
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.calif.verde { background: #22c55e; color: #000; }
+.calif.azul { background: #3b82f6; color: #fff; }
+.calif.naranja { background: #f59e0b; color: #000; }
+
+/* Contenedor General */
+.calificaciones-container {
+    padding: 20px;
+}
+
+.titulo-calif {
+    color: #00c3ff;
+    font-size: 18px;
+    border-bottom: 1px solid rgba(0, 195, 255, 0.3);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* Grid de 4 columnas (o las que desees) */
+.grid-calificaciones {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+/* La Tarjeta de Calificación */
+.card-calif {
+    background: #1a1a1a; /* Fondo oscuro de la imagen */
+    border: 1px solid #333;
+    padding: 15px;
+    border-radius: 4px; /* Bordes menos redondeados para este estilo */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilo de Letras (Igual al horario) */
+.card-calif .label {
+    color: #3b82f6; /* Azul de la imagen */
+    font-size: 10px;
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+}
+
+.card-calif .dato {
+    color: #ffffff;
+    font-size: 14px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 2px;
+}
+
+/* Grid de 4 datos pequeños abajo */
+.card-calif .card-footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+    margin: 15px 0;
+}
+
+/* Color específico para la calificación */
+.azul-score {
+    color: #00c3ff !important;
+    font-size: 18px !important;
+    font-weight: bold;
+    margin-top: 5px;
+}
+/* Layout Principal */
+.main-layout {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 30px;
+    padding: 20px;
+    background-color: #0f1115; /* Fondo oscuro similar a la imagen */
+    min-height: 100vh;
+}
+
+/* Columna Izquierda */
+.titulo-calif {
+    color: #00c3ff;
+    font-size: 18px;
+    border-bottom: 1px solid rgba(0, 195, 255, 0.3);
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+}
+
+.grid-calificaciones {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* Tarjetas de Materias */
+.card-calif {
+    background: #161b22;
+    border: 1px solid #30363d;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    color: #3b82f6; /* Azul de etiquetas */
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 12px;
+}
+
+.dato {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    display: block;
+}
+
+.card-footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.azul-score {
+    color: #00c3ff;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* Columna Derecha (Sidebar) */
+.sidebar-progreso {
+    background: #161b22;
+    border: 1px solid #30363d;
+    padding: 25px;
+    border-radius: 12px;
+    position: sticky;
+    top: 20px;
+}
+
+.stats-resumen {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.dato-grande {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.progreso-carrera {
+    margin-bottom: 35px;
+}
+
+.dato-porcentaje {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: bold;
+    display: block;
+}
+
+.progress-bar-bg {
+    background: #30363d;
+    height: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    background: #238636; /* Verde de la imagen */
+    height: 100%;
+    border-radius: 5px;
+}
+
+/* Botones */
+.btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 12px;
+    cursor: pointer;
+    margin-bottom: 12px;
+    transition: 0.2s;
+}
+
+.azul-full { background: #00a2ff; color: white; }
+.oscuro-full { background: #21262d; color: #c9d1d9; border: 1px solid #30363d; }
+
+.btn:hover { filter: brightness(1.2); transform: translateY(-2px); }
+
+/* Móvil */
+@media (max-width: 900px) {
+    .main-layout { grid-template-columns: 1fr; }
+    .col-derecha { order: -1; }
+}

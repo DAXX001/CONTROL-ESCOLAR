@@ -1,0 +1,357 @@
+       :root {
+    --bg: #02050a;
+    --text: #ffffff;
+    --card: rgba(255,255,255,0.05);
+    --border: rgba(173,216,230,0.2);
+    --primary: #add8e6;
+}
+
+/* 🌙 DARK (default) */
+body.dark-mode {
+    --bg: #02050a;
+    --text: #ffffff;
+    --card: rgba(255,255,255,0.05);
+}
+
+/* ☀️ LIGHT MODE */
+body.light-mode {
+    --bg: #f5f7fa;
+    --text: #111;
+    --card: rgba(0,0,0,0.05);
+    --border: rgba(0,0,0,0.1);
+    --primary: #004a80;
+}
+       
+       
+       /* BASE ESTILO LOGIN */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #02050a; 
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        #canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+        }
+
+        /* --- LÓGICA DE EMPUJE Y ESCALADO (NUEVO) --- */
+        .main-wrap {
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            width: 100%;
+            transform-origin: left center;
+        }
+
+        /* Efecto cuando el menú está abierto */
+        .main-wrap.active {
+            margin-left: 260px; /* Ancho del sidebar */
+            width: calc(100% - 260px);
+            transform: scale(0.95); /* Se encoge un poco para dar profundidad */
+            opacity: 0.6;
+            filter: blur(2px);
+            pointer-events: none;
+        }
+
+        /* BARRA SUPERIOR GLASSMORFISMO */
+        .top-bar {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            height: 65px;
+            position: fixed;
+            top: 0; width: 100%;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 25px;
+            border-bottom: 1px solid rgba(173, 216, 230, 0.1);
+        }
+
+        /* BOTÓN DE 3 LÍNEAS ANIMADO */
+        .menu-btn {
+            cursor: pointer;
+            z-index: 1002;
+            background: none;
+            border: none;
+            padding: 0;
+            margin: 0;
+            position: relative; 
+            left: 0;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .menu-btn.active { left: 250px; }
+
+        .menu-btn span {
+            display: block;
+            height: 3px;
+            width: 30px;
+            margin: 6px 0;
+            background-color: #add8e6;
+            transition: 0.5s;
+            border-radius: 2px;
+            box-shadow: 0 0 8px rgba(173, 216, 230, 0.3);
+        }
+
+        .menu-btn.active span:nth-child(1) { transform: rotate(-45deg) translate(-6px, 7px); background-color: #fff; }
+        .menu-btn.active span:nth-child(2) { opacity: 0; }
+        .menu-btn.active span:nth-child(3) { transform: rotate(45deg) translate(-6px, -7px); background-color: #fff; }
+
+        .logo-nav {
+            height: 45px;
+            filter: drop-shadow(0 0 10px rgba(173, 216, 230, 0.3));
+        }
+
+.hero-section {
+    position: relative;
+    height: 100vh; /* pantalla completa */
+    overflow: hidden;
+
+    /* 🔥 DIFUMINADO TRANSPARENTE */
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        black 70%,
+        transparent 100%
+    );
+
+    mask-image: linear-gradient(
+        to bottom,
+        black 70%,
+        transparent 100%
+    );
+}
+
+/* VIDEO */
+.video-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+/* OVERLAY */
+.video-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.65);
+    z-index: 2;
+}
+
+/* CONTENEDOR */
+.carousel {
+    position: relative;
+    z-index: 3;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1200px;
+}
+
+/* 🔥 SLIDES GRANDES Y RESPONSIVOS */
+.slide {
+    position: absolute;
+    width: 60vw;
+    max-width: 900px;
+    height: auto;
+    transition: all 0.6s ease;
+    opacity: 0;
+    transform: scale(0.7);
+}
+
+/* IMAGEN */
+.slide img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.7);
+}
+
+/* ACTIVO (CENTRO) */
+.slide.active {
+    transform: translateX(0) scale(1.1);
+    opacity: 1;
+    z-index: 3;
+}
+
+/* IZQUIERDA */
+.slide.left {
+    transform: translateX(-35vw) scale(0.85) rotate(-10deg);
+    opacity: 0.6;
+    z-index: 2;
+}
+
+/* DERECHA */
+.slide.right {
+    transform: translateX(35vw) scale(0.85) rotate(10deg);
+    opacity: 0.6;
+    z-index: 2;
+}
+
+/* OCULTOS */
+.slide.hidden {
+    opacity: 0;
+    z-index: 1;
+}
+
+/* TEXTO */
+.slide .overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 25px;
+    color: white;
+    font-size: 1.2rem;
+}
+
+/* BOTONES */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 35px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    z-index: 4;
+    border-radius: 10px;
+}
+
+.prev { left: 30px; }
+.next { right: 30px; }
+/* HOVER BOTONES */
+.prev:hover, .next:hover {
+    background: rgba(255,255,255,0.2);
+}
+        /* BUSCADOR */
+        .search-container {
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .search-title {
+            font-size: 24px;
+            margin-bottom: 25px;
+            color: #fff;
+            letter-spacing: 1px;
+            font-weight: 300;
+            text-shadow: 0 0 10px rgba(173, 216, 230, 0.3);
+        }
+
+        .search-box {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            width: 70%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(173, 216, 230, 0.2);
+            border-radius: 50px; /* Estilo redondeado moderno */
+            padding: 15px 25px;
+            color: #fff;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #add8e6;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(173, 216, 230, 0.3);
+        }
+
+        .search-button {
+            padding: 0 40px;
+            background: #fff;
+            color: #000;
+            border: none;
+            border-radius: 50px;
+            font-weight: 900;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.4s ease;
+        }
+
+        .search-button:hover {
+            background: #add8e6;
+            box-shadow: 0 0 25px rgba(173, 216, 230, 0.6);
+            transform: scale(1.05);
+        }
+
+        /* RECUADROS */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px 10%;
+            margin-bottom: 100px;
+        }
+
+        .recuadro {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(173, 216, 230, 0.1);
+            border-radius: 25px;
+            padding: 40px 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        .recuadro:hover {
+            transform: translateY(-15px) scale(1.02);
+            background: rgba(173, 216, 230, 0.05);
+            border-color: #add8e6;
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.15);
+        }
+
+        .recuadro i { font-size: 45px; color: #add8e6; margin-bottom: 20px; display: block; }
+
+        /* SIDEBAR */
+        .sidebar {
+            height: 100%;
+            width: 260px;
+            position: fixed;
+            top: 0; left: -260px;
+            background: rgba(5, 10, 20, 0.98);
+            backdrop-filter: blur(25px);
+            z-index: 1001;
+            transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            padding-top: 80px;
+            border-right: 1px solid rgba(173, 216, 230, 0.1);
+        }
+
+        .sidebar.active { left: 0; box-shadow: 20px 0 50px rgba(0,0,0,0.5); }
+
+        .sidebar a {
+            padding: 20px 35px;
+            text-decoration: none;
+            color: #add8e6;
+            display: flex;
+            align-items: center;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover { background: rgba(173, 216, 230, 0.1); color: #fff; padding-left: 45px; }
+
+        /* ANIMACIONES */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }

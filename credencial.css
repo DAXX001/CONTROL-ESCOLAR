@@ -1,0 +1,170 @@
+/* Contenedor central */
+.credencial-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+}
+
+.credencial-card {
+    width: 350px;
+    background: rgba(13, 20, 26, 0.9);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(0, 195, 255, 0.3);
+    border-radius: 25px;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 20px rgba(0,195,255,0.1);
+}
+
+/* Decoraciones */
+.circle-decor {
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(0,195,255,0.2) 0%, transparent 70%);
+}
+
+.credencial-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.logo-creden { width: 120px; filter: brightness(1.2); }
+
+.creden-type {
+    display: block;
+    color: #00c3ff;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Ajuste de foto para que no se deforme */
+.creden-photo-frame {
+    width: 150px;
+    height: 180px;
+    margin: 0 auto 20px;
+    border: 2px solid #00c3ff;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer; /* Indica que se puede hacer clic */
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.creden-photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Recorta y ajusta automáticamente */
+    object-position: center;
+}
+
+/* Efecto al pasar el mouse por la foto */
+.photo-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 195, 255, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.creden-photo-frame:hover .photo-overlay {
+    opacity: 1;
+}
+
+.photo-overlay i {
+    color: white;
+    font-size: 24px;
+}
+
+/* Textos */
+.label-creden {
+    color: #00c3ff;
+    font-size: 9px;
+    font-weight: 800;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 12px;
+}
+
+.dato-creden {
+    color: #fff;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+#credenNombre {
+    font-size: 18px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 5px;
+}
+
+.creden-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+/* QR y Puntos */
+.creden-footer {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+/* Ajuste final del QR para que sea legible y no se encime nada */
+.qr-container {
+    background: #ffffff; /* Fondo blanco total para contraste */
+    padding: 6px;        /* Espacio interno para que el QR respire */
+    border-radius: 10px;
+    width: 85px;         /* Un poco más grande para mejor escaneo */
+    height: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    overflow: hidden;    /* Evita que el contenido se salga */
+}
+
+.qr-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Asegura que el QR no se estire */
+    display: block;
+}
+
+/* Dots decorativos (inferior derecha) */
+.creden-dots {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-bottom: 5px;
+}
+
+.creden-dots span {
+    width: 5px;
+    height: 5px;
+    background: rgba(0, 195, 255, 0.5); /* Azul neón traslúcido */
+    border-radius: 50%;
+}
+
+/* Asegura que el canvas/imagen generado por la librería se adapte al contenedor */
+#qrcode img, #qrcode canvas {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}

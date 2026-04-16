@@ -1,0 +1,99 @@
+/* Contenedor principal */
+.calendar-page-container {
+    background: #202124; /* Color oscuro de visores PDF */
+    height: calc(100vh - 40px);
+    margin: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 1px solid #333;
+}
+
+/* Barra de herramientas superior */
+.pdf-viewer-bar {
+    background: #323639;
+    padding: 8px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    font-size: 13px;
+}
+
+.pdf-left, .pdf-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.pdf-center {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: #202124;
+    padding: 5px 15px;
+    border-radius: 4px;
+}
+
+.pdf-file-name {
+    font-weight: 400;
+    color: #e8eaed;
+}
+
+/* Estilo de botones de la barra */
+.btn-icon, .zoom-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    opacity: 0.8;
+    transition: 0.2s;
+}
+
+.btn-icon:hover, .zoom-btn:hover { opacity: 1; color: #00c3ff; }
+
+/* Contenido Principal (Sidebar + PDF) */
+.pdf-main-content {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Miniaturas de la izquierda */
+.pdf-thumbnails {
+    width: 200px;
+    background: #323639;
+    padding: 20px;
+    border-right: 1px solid #202124;
+}
+
+.thumb {
+    text-align: center;
+    cursor: pointer;
+}
+
+.thumb img {
+    width: 100%;
+    border: 2px solid #00c3ff;
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
+
+.thumb span { font-size: 11px; color: #fff; }
+
+/* Espacio del PDF */
+.pdf-frame-container {
+    flex: 1;
+    background: #525659; /* Fondo gris tras el PDF */
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+embed {
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    max-width: 1000px;
+}
