@@ -118,6 +118,5 @@ function connect() {
     }
 }
 
-// 🔥 INICIO CORRECTO
 resizeCanvas();
 animate();
